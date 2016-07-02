@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 gem 'sqlite3'
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'byebug', platform: :mri
