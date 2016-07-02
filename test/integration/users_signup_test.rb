@@ -12,4 +12,16 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     assert_template 'users/new'
   end
+
+  test "valid signup information" do
+    get signup_path
+    assert_difference 'User.count',1 do
+      post users_path, params: { user: { name:  "Test User",
+                                         email: "test@user.com",
+                                         password:              "tester",
+                                         password_confirmation: "tester" } }
+    end
+    follow_redire
+    assert_template 'users/show'
+  end
 end
