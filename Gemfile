@@ -8,12 +8,12 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
-gem 'sqlite3'
 gem 'bootstrap-sass'
 gem 'bcrypt'
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'pg'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -32,6 +32,10 @@ group :test do
   gem 'minitest-reporters'
   gem 'guard'
   gem 'guard-minitest'
+end
+
+group :production do
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
