@@ -29,6 +29,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   host = 'localhost:3000' # Don't use this literally; use your local dev host instead
+  config.action_mailer.delivery_method = :test
 
   config.action_mailer.perform_caching = false
 
@@ -53,15 +54,17 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  ActionMailer::Base.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  host = 'damp-woodland-84979.herokuapp.com'
+  config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
-      :address        => 'smtp.gmail.com',
-      :domain         => 'mail.google.com',
-      :port           => 587,
-      :user_name      => '<arcanaamicus@gmail.com',
-      :password       => '00550055',
+      :address        => 'smtp.sendgrid.net',
+      :port           => '587',
       :authentication => :plain,
+      :user_name      => ENV['SENDGRID_USERNAME'],
+      :password       => ENV['SENDGRID_PASSWORD'],
+      :domain         => 'heroku.com',
       :enable_starttls_auto => true
   }
 end
