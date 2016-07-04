@@ -55,7 +55,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
   host = 'damp-woodland-84979.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
