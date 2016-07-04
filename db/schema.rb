@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160703121845) do
+ActiveRecord::Schema.define(version: 20160704014343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 20160703121845) do
     t.string   "activation_digest"
     t.boolean  "activated",         default: false
     t.datetime "activated_at"
+    t.string   "address_street"
+    t.integer  "address_number"
+    t.string   "address_aditional"
+    t.string   "address_zip"
+    t.string   "address_city"
+    t.string   "address_state"
+    t.string   "address_country"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
