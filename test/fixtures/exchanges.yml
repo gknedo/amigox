@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  admins: 
+  participants: 
+  raffle: 2016-07-04 01:58:27
+
+two:
+  admins: 
+  participants: 
+  raffle: 2016-07-04 01:58:27
