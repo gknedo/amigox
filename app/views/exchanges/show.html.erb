@@ -1,1 +1,20 @@
-<p>SHOW: Algum amigo secreto</p>
+<% provide(:title, @exchange.title) %>
+<h1><%= @exchange.title %></h1>
+<div class="row" align="center">
+  <div class="col-sm-5">
+    Administradores:<br>
+    <% @exchange.admins.each do |id| %>
+        <% @user = User.find(id) %>
+        |<%= link_to(gravatar_for(@user, size: 25),@user) %>
+    <% end %>
+    |<br>
+  </div>
+  <div class="col-sm-5">
+    Participantes:<br>
+    <% @exchange.participants.each do |id| %>
+        <% @user = User.find(id) %>
+        |<%= link_to(gravatar_for(@user, size: 25),@user) %>
+    <% end %>
+    |<br>
+  </div>
+</div>

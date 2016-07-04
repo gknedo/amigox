@@ -7,7 +7,7 @@ class ExchangesController < ApplicationController
   end
 
   def create
-    @exchange = Exchange.new(user_params.merge(admins: [@current_user.id]))
+    @exchange = Exchange.new(user_params.merge(admins: [@current_user.id],participants:[@current_user.id]))
     if @exchange.save
       flash[:info] = "Amigo secreto criado."
       redirect_to root_url
