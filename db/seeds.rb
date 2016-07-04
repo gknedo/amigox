@@ -7,11 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create!(name:  "Canedo",
              email: "gknedo@gmail.com",
+             address_street: "Rua teste",
+             address_number: 265,
+             address_city: "Santa Rita de Caldas",
+             address_state: "Minas Gerais",
+             address_country: "Brasil",
              password:              "password",
              password_confirmation: "password",
              admin: true,
              activated: true,
-             activated_at: Time.zone.now)
+             activated_at: Time.zone.now,)
 
 99.times do |n|
   name  = Faker::Name.name
