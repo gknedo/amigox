@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-      flash[:info] = "Please check your email to activate your account."
+      flash[:info] = "Verifique seu email para ativar sua conta."
       redirect_to root_url
     else
       render 'new'
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "Perfil atualizado"
       redirect_to @user
     else
       render 'edit'
@@ -42,16 +42,8 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    flash[:success] = "Usuário deletado"
     redirect_to users_url
-  end
-
-  private
-
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation,
-                                 :address_street,:address_number,:address_aditional,:address_zip,
-                                 :address_city,:address_state,:address_country)
   end
 
   #Before filters
@@ -60,7 +52,7 @@ class UsersController < ApplicationController
   def logged_in_user
     unless logged_in?
       store_location
-      flash[:danger] = "Please log in."
+      flash[:danger] = "Por favor, esteja logado para visualizar esse conteúdo"
       redirect_to login_url
     end
   end
@@ -74,5 +66,13 @@ class UsersController < ApplicationController
   # Confirms an admin user.
   def admin_user
     redirect_to(root_url) unless current_user.admin?
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation,
+                                 :address_street,:address_number,:address_aditional,:address_zip,
+                                 :address_city,:address_state,:address_country,:about)
   end
 end

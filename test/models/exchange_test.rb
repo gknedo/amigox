@@ -15,10 +15,7 @@ class ExchangeTest < ActiveSupport::TestCase
     invalid_exchange = Exchange.new
     assert_not invalid_exchange.valid?
 
-    invalid_exchange = Exchange.new(admins: [1])
-    assert_not invalid_exchange.valid?
-
-    valid_exchange = Exchange.new(admins: [1],participants: [1,2,3])
+    valid_exchange = Exchange.new(participants: [1,2,3,4,5])
     assert_not valid_exchange.valid?
   end
 end

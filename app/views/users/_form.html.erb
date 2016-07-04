@@ -58,5 +58,8 @@
       </div>
     </div>
 
+    <%= f.label 'Sobre:' %>
+    <%= f.text_area :about, class: 'form-control' %>
+
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

@@ -1,16 +1,23 @@
 <% provide(:title, @user.name) %>
 <div class="row">
   <aside class="col-sm-4">
+    <div class="well" align="center">
+      <section class="user_info">
+        <h2>
+          <%= gravatar_for @user %> <br>
+          <%= @user.name %>
+        </h2>
+        <%= @user.address_street %><%= !@user.address_number.blank? ? ", #{@user.address_number}" : "" %><%= !@user.address_aditional.blank? ? ", #{@user.address_aditional}" : "" %>
+        <br>
+        <%= @user.address_city %><%= !@user.address_state.blank? ? ", #{@user.address_state}" : "" %><%= !@user.address_country.blank? ? raw("<br>") : "" %><%= !@user.address_country.blank? ? "#{@user.address_country}" : "" %>
+      </section>
+    </div>
+  </aside>
+  <aside class="col-sm-4">
     <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-
-      <%= @user.address_street %><%= !@user.address_number.blank? ? ", #{@user.address_number}" :""  %><%= !@user.address_aditional.blank? ? ", #{@user.address_aditional}" : "" %>
-      <br>
-      <%= @user.address_city %><%= !@user.address_state.blank? ? ", #{@user.address_state}" : "" %><%= !@user.address_country.blank? ? raw("<br>") : ""%><%= !@user.address_country.blank? ? "#{@user.address_country}" : "" %>
-
+      <p><%=simple_format(@user.about).html_safe %></p>
     </section>
   </aside>
 </div>
+
+

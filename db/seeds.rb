@@ -12,11 +12,12 @@ User.create!(name:  "Canedo",
              address_city: "Santa Rita de Caldas",
              address_state: "Minas Gerais",
              address_country: "Brasil",
+             about: "O cara que quer um emprego...",
              password:              "password",
              password_confirmation: "password",
              admin: true,
              activated: true,
-             activated_at: Time.zone.now,)
+             activated_at: Time.zone.now)
 
 99.times do |n|
   name  = Faker::Name.name

@@ -1,0 +1,10 @@
+<%= form_for(@exchange) do |f| %>
+
+    <%= f.label 'Título:' %>
+    <%= f.text_field :title, class: 'form-control' %>
+
+    <%= f.label 'Descrição:' %>
+    <%= f.text_area :description, class: 'form-control' %>
+
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
