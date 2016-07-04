@@ -1,0 +1,8 @@
+<li>
+  <%= link_to exchange.title, exchange %>
+  <% if current_user.admin? %>
+      | <%= link_to "Cancelar", exchange, method: :delete,
+                    data: { confirm: "Deseja mesmo cancelar este amigo secreto?" } %>
+  <% end %>
+
+</li>

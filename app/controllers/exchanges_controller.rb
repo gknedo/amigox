@@ -17,7 +17,11 @@ class ExchangesController < ApplicationController
   end
 
   def index
+    @exchanges = Exchange.paginate(page: params[:page])
+  end
 
+  def show
+    @exchange = Exchange.find(params[:id])
   end
 
   #Before filters
