@@ -16,6 +16,10 @@ class ExchangesController < ApplicationController
     end
   end
 
+  def index
+
+  end
+
   #Before filters
 
   # Confirms a logged-in user.
