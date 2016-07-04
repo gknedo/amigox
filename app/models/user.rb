@@ -51,6 +51,18 @@ class User < ApplicationRecord
     UserMailer.account_activation(self).deliver_now
   end
 
+  def self.search(search)
+
+    if search
+      search_string = "%"+search+"%"
+      User.where("name LIKE ?",search_string)
+    else
+      User.all
+    end
+  end
+
+
+
   private
 
   # Converts email to all lower-case.

@@ -1,8 +1,17 @@
 <% provide(:title, 'Nossa Comunidade') %>
-<h1>Nossa comunidade:</h1>
-
-<%= will_paginate %>
+<div class="row">
+  <div class="col-sm-8">
+    <h1>Nossa comunidade:</h1>
+  </div>
+  <div class="col-sm-4">
+    <%= form_tag(users_path, method: "get") do %>
+        <%= label_tag(:search, "Busca de Usuários:") %>
+        <%= text_field_tag :search, "", class: 'form-control' %>
+        <%= submit_tag "Search", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
 <ul class="indexlist">
- <%= render @users %>
+  <%= render @users %>
 </ul>
 <%= will_paginate %>

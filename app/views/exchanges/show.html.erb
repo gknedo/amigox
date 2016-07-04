@@ -1,7 +1,8 @@
 <% provide(:title, @exchange.title) %>
-<h1><%= @exchange.title %></h1>
 <div class="row" align="center">
-  <div class="col-sm-5">
+  <h1><%= @exchange.title %></h1>
+  <p><%=simple_format(@exchange.description).html_safe %></p>
+  <div class="col-sm-6">
     Administradores:<br>
     <% @exchange.admins.each do |id| %>
         <% @user = User.find(id) %>
@@ -9,7 +10,7 @@
     <% end %>
     |<br>
   </div>
-  <div class="col-sm-5">
+  <div class="col-sm-6">
     Participantes:<br>
     <% @exchange.participants.each do |id| %>
         <% @user = User.find(id) %>
