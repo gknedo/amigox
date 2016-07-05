@@ -15,24 +15,15 @@
 <ul class="indexlist">
   <% n = 0 %>
   <% @users.each do |user_index| %>
-
       <% i = n%3 %>
+      <% @usercard = user_index; @avatar_size = 50 %>
       <% if i==0 %>
           <li>
-            <div class="col-sm-4" align="center">
-              <%= link_to(gravatar_for(user_index, size: 50), user_index) %><br>
-              <%= link_to user_index.name, user_index %>
-            </div>
-      <% elsif i==1 %>
-          <div class="col-sm-4" align="center">
-            <%= link_to(gravatar_for(user_index, size: 50), user_index) %><br>
-            <%= link_to user_index.name, user_index %>
-          </div>
-      <% else %>
-          <div class="col-sm-4" align="center">
-            <%= link_to(gravatar_for(user_index, size: 50), user_index) %><br>
-            <%= link_to user_index.name, user_index %>
-          </div>
+      <% end %>
+
+      <%= render 'usercard' %>
+
+      <% if i==2 %>
           </li>
       <% end %>
       <% n+=1 %>

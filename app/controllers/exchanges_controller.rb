@@ -32,6 +32,10 @@ class ExchangesController < ApplicationController
 
   def invitation
     @exchange = Exchange.find(params[:id])
+    unless @exchange.have_user_as?(current_user,'admins')
+      flash[:danger] = "Você deve ser um administrador do amigo secreto para convidar outras pessoas!"
+      redirect_to exchanges_path
+    end
   end
 
   #Before filters
