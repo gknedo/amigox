@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create!(name:  "Gustavo Canedo",
+User.create!(name: "Gustavo Canedo",
              email: "gknedo@gmail.com",
              address_street: "Rua Jorge José dos Santos",
              address_number: 270,
@@ -13,36 +13,52 @@ User.create!(name:  "Gustavo Canedo",
              address_state: "Minas Gerais",
              address_country: "Brasil",
              about: "O cara que quer um emprego...",
-             password:              "password",
+             password: "password",
              password_confirmation: "password",
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
 
-User.create!(name:  "Rayane Lopes",
+User.create!(name: "Rayane Lopes",
              email: "rayanellpz@gmail.com",
-             password:              "password",
+             password: "password",
              password_confirmation: "password",
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
 
-User.create!(name:  "Bruno Oliveira",
+User.create!(name: "Bruno Oliveira",
              email: "kinzao_12@hotmail.com",
-             password:              "password",
+             password: "password",
              password_confirmation: "password",
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
 
 99.times do |n|
-  name  = Faker::Name.name
+  name = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
-  User.create!(name:  name,
+  User.create!(name: name,
                email: email,
-               password:              password,
+               password: password,
                password_confirmation: password,
                activated: true,
                activated_at: Time.zone.now)
 end
+
+Exchange.create(
+    title: "Inauguração dos Amigos",
+    description: "Descrição do primeiro amigo secreto",
+    admins: ['1'],
+    participants: ['1', '2']
+)
+
+Exchange.create(
+    title: "Segundo amigo",
+    description: "Descrição do segundo amigo secreto",
+    admins: ['1'],
+    participants: ['1']
+)
+
+

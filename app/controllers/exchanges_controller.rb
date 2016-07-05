@@ -55,4 +55,8 @@ class ExchangesController < ApplicationController
   end
 
   private
+
+  def user_params
+    params.require(:exchange).permit(:title,:description)
+  end
 end
