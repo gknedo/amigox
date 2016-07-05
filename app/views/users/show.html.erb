@@ -15,10 +15,10 @@
   </aside>
   <aside class="col-sm-4">
     <section class="user_info">
-      <p><%=simple_format(@user.about).html_safe %></p>
+      <p><%= simple_format(@user.about).html_safe %></p>
     </section>
   </aside>
 </div>
-<% if @current_user.admin? && !current_user?(@user) %>
-    <%= link_to "Deletar", @user, method: :delete, data: { confirm: "Deseja mesmo deletar este usuário?" } %>
-<% end %>
+<div class="row">
+  <%= render 'invitation_group' %>
+</div>

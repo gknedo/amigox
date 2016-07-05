@@ -3,14 +3,14 @@
   <div class="col-sm-8">
     <h1>Nossa comunidade:</h1>
   </div>
-  <div class="col-sm-3">
-    <%= form_tag(users_path, method: "get") do %>
+  <%= form_tag(users_path, method: "get") do %>
+      <div class="col-sm-3">
         <%= text_field_tag :search, "", class: 'form-control' %>
-  </div>
-  <div class="col-sm-1">
+      </div>
+      <div class="col-sm-1">
         <%= submit_tag "Buscar", class: 'btn btn-primary' %>
-    <% end %>
-  </div>
+      </div>
+  <% end %>
 </div>
 <ul class="indexlist">
   <% n = 0 %>
@@ -19,23 +19,23 @@
       <% i = n%3 %>
       <% if i==0 %>
           <li>
-          <div class="col-sm-4" align="center">
-            <%= link_to(gravatar_for(user_index, size: 50),user_index) %><br>
-            <%= link_to user_index.name, user_index %>
-          </div>
+            <div class="col-sm-4" align="center">
+              <%= link_to(gravatar_for(user_index, size: 50), user_index) %><br>
+              <%= link_to user_index.name, user_index %>
+            </div>
       <% elsif i==1 %>
           <div class="col-sm-4" align="center">
-            <%= link_to(gravatar_for(user_index, size: 50),user_index) %><br>
+            <%= link_to(gravatar_for(user_index, size: 50), user_index) %><br>
             <%= link_to user_index.name, user_index %>
           </div>
       <% else %>
           <div class="col-sm-4" align="center">
-            <%= link_to(gravatar_for(user_index, size: 50),user_index) %><br>
+            <%= link_to(gravatar_for(user_index, size: 50), user_index) %><br>
             <%= link_to user_index.name, user_index %>
           </div>
           </li>
       <% end %>
       <% n+=1 %>
-  <%end %>
+  <% end %>
 </ul>
 <div align="right"><%= will_paginate %></div>

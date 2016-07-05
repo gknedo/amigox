@@ -2,11 +2,11 @@ require 'test_helper'
 
 class ExchangeTest < ActiveSupport::TestCase
   def setup
-    @exchange = Exchange.new(admins: [1],participants: [1,2,3,4,5],raffle: 14.days.from_now)
+    @exchange = Exchange.new(admins: [1],participants: [1,2,3,4,5])
   end
 
   test "should be valid" do
-    valid_exchange = Exchange.new(admins: [1],participants: [1,2,3,4,5],raffle: 14.days.from_now)
+    valid_exchange = Exchange.new(admins: [1],participants: [1,2,3,4,5])
     assert valid_exchange.valid?
 
     valid_exchange = Exchange.new(admins: [1,2,3,4,5],participants: [1,2,3,4,5])

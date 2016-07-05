@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :exchanges do
     member do
-      get :invite
+      get :invitation
    end
   end
   resources :users
