@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @current_user = current_user
   end
 
   def new
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       flash[:info] = "Verifique seu email para ativar sua conta."
-      redirect_to root_url
+      redirect_to root_path
     else
       render 'new'
     end
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "Usuário deletado"
-    redirect_to users_url
+    redirect_to users_path
   end
 
   #Before filters
@@ -53,7 +54,7 @@ class UsersController < ApplicationController
     unless logged_in?
       store_location
       flash[:danger] = "Por favor, esteja logado para visualizar esse conteúdo"
-      redirect_to login_url
+      redirect_to login_path
     end
   end
 

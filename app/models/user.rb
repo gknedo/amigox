@@ -55,7 +55,7 @@ class User < ApplicationRecord
 
     if search
       search_string = "%"+search+"%"
-      User.where("name LIKE ?",search_string)
+      User.where("lower(name) LIKE ?",search_string.downcase)
     else
       User.all
     end

@@ -24,6 +24,12 @@ class ExchangesController < ApplicationController
     @exchange = Exchange.find(params[:id])
   end
 
+  def destroy
+    Exchange.find(params[:id]).destroy
+    flash[:success] = "Amigo secreto deletado"
+    redirect_to exchanges_path
+  end
+
   #Before filters
 
   # Confirms a logged-in user.

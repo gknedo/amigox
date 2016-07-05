@@ -3,15 +3,39 @@
   <div class="col-sm-8">
     <h1>Nossa comunidade:</h1>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <%= form_tag(users_path, method: "get") do %>
-        <%= label_tag(:search, "Busca de Usuários:") %>
         <%= text_field_tag :search, "", class: 'form-control' %>
-        <%= submit_tag "Search", class: 'btn btn-primary' %>
+  </div>
+  <div class="col-sm-1">
+        <%= submit_tag "Buscar", class: 'btn btn-primary' %>
     <% end %>
   </div>
 </div>
 <ul class="indexlist">
-  <%= render @users %>
+  <% n = 0 %>
+  <% @users.each do |user_index| %>
+
+      <% i = n%3 %>
+      <% if i==0 %>
+          <li>
+          <div class="col-sm-4" align="center">
+            <%= link_to(gravatar_for(user_index, size: 50),user_index) %><br>
+            <%= link_to user_index.name, user_index %>
+          </div>
+      <% elsif i==1 %>
+          <div class="col-sm-4" align="center">
+            <%= link_to(gravatar_for(user_index, size: 50),user_index) %><br>
+            <%= link_to user_index.name, user_index %>
+          </div>
+      <% else %>
+          <div class="col-sm-4" align="center">
+            <%= link_to(gravatar_for(user_index, size: 50),user_index) %><br>
+            <%= link_to user_index.name, user_index %>
+          </div>
+          </li>
+      <% end %>
+      <% n+=1 %>
+  <%end %>
 </ul>
-<%= will_paginate %>
+<div align="right"><%= will_paginate %></div>
