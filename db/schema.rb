@@ -10,23 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705010827) do
+ActiveRecord::Schema.define(version: 20160706183427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "exchanges", force: :cascade do |t|
-    t.string   "admins",       default: [],                 array: true
-    t.string   "participants", default: [],                 array: true
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.string   "title"
     t.text     "description"
-    t.string   "guests",       default: [],                 array: true
-    t.string   "requests",     default: [],                 array: true
     t.boolean  "secret",       default: false
     t.boolean  "raffled",      default: false
     t.boolean  "exposed",      default: false
+    t.integer  "admins",       default: [],                 array: true
+    t.integer  "participants", default: [],                 array: true
+    t.integer  "invites",      default: [],                 array: true
+    t.integer  "requests",     default: [],                 array: true
   end
 
   create_table "users", force: :cascade do |t|

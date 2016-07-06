@@ -1,8 +1,6 @@
-<li>
-  <%= gravatar_for user, size: 50 %>
-  <%= link_to user.name, user %>
-  <% if current_user.admin? && !current_user?(user) %>
-      | <%= link_to "Deletar", user, method: :delete,
-                    data: { confirm: "Deseja mesmo deletar este usuário?" } %>
-  <% end %>
-</li>
+<div class="col-sm-4">
+  <%= render 'users/user_card' %>
+</div>
+<div class="col-sm-4">
+  <%= render 'users/user_info' %>
+</div>

@@ -50,15 +50,27 @@ end
 Exchange.create(
     title: "Inauguração dos Amigos",
     description: "Descrição do primeiro amigo secreto",
-    admins: ['1'],
-    participants: ['1', '2']
+    admins: [1],
+    participants: [1, 2]
 )
 
 Exchange.create(
     title: "Segundo amigo",
     description: "Descrição do segundo amigo secreto",
-    admins: ['1'],
-    participants: ['1']
+    admins: [1],
+    participants: [1]
 )
 
+Exchange.create(
+    title: "Amigo da Rayane",
+    description: "Descrição do amigo da rayane",
+    admins: [2],
+    participants: [2]
+)
 
+Exchange.create(
+    title: "Amigo do Bruno",
+    description: "Descrição do amigo dele",
+    admins: [3],
+    participants: [3]
+)

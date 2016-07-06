@@ -9,12 +9,13 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :exchanges do
     member do
-      get :invite, to: 'exchanges#invite_new'
-      post :invite, to: 'exchanges#invite_create'
+      get :invite_send, to: 'exchanges#invite_send_confirm'
+      post :invite_send, to: 'exchanges#invite_send'
+      get :invite_accept, to: 'exchanges#invite_accept_confirm'
+      post :invite_accept, to: 'exchanges#invite_accept'
    end
   end
   resources :users
   resources :account_activations, only: [:edit]
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

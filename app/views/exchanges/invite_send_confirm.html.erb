@@ -1,0 +1,11 @@
+<div class="row" align="center">
+  <p>Deseja mesmo convidar "<%= @user.name %>" para participar de "<%= @exchange.title %>"?</p>
+  <%= link_to "SIM", '', method: :post %>
+</div>
+<div class="row" align="center">
+  <div class="col-sm-4">
+  </div>
+  <div class="col-sm-4">
+    <%= render 'users/user_card' %>
+  </div>
+</div>

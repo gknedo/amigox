@@ -1,21 +1,40 @@
 <% provide(:title, @exchange.title) %>
-<div class="row" align="center">
-  <h1><%= @exchange.title %></h1>
-  <p><%=simple_format(@exchange.description).html_safe %></p>
-  <div class="col-sm-6">
-    Administradores:<br>
-    <% @exchange.admins.each do |id| %>
-        <% @user = User.find(id) %>
-        <%= link_to(gravatar_for(@user, size: 25),@user) %>
-    <% end %>
-    <br>
-  </div>
-  <div class="col-sm-6">
-    Participantes:<br>
-    <% @exchange.participants.each do |id| %>
-        <% @user = User.find(id) %>
-        <%= link_to(gravatar_for(@user, size: 25),@user) %>
-    <% end %>
-    <br>
+<div class="panel panel-primary">
+  <div class="panel-heading"><%= @exchange.title %></div>
+  <div class="panel-body">
+    <p><%= simple_format(@exchange.description).html_safe %></p>
+    <div class="row" align="center">
+      <div class="col-sm-6">
+        Administradores:<br>
+        <% @exchange.admins.each do |id| %>
+            <% @user = User.find(id) %>
+            <%= link_to(gravatar_for(@user, size: 25), @user) %>
+        <% end %>
+      </div>
+      <div class="col-sm-6">
+        Participantes:<br>
+        <% @exchange.participants.each do |id| %>
+            <% @user = User.find(id) %>
+            <%= link_to(gravatar_for(@user, size: 25), @user) %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row" align="center">
+      <div class="col-sm-6">
+        Convidados:<br>
+        <% @exchange.invites.each do |id| %>
+            <% @user = User.find(id) %>
+            <%= link_to(gravatar_for(@user, size: 25), @user) %>
+        <% end %>
+      </div>
+      <div class="col-sm-6">
+        Requisições de Participação:<br>
+        <% @exchange.requests.each do |id| %>
+            <% @user = User.find(id) %>
+            <%= link_to(gravatar_for(@user, size: 25), @user) %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

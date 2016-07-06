@@ -1,7 +1,6 @@
 <% provide(:title, 'Nossa Comunidade') %>
 <div class="row">
-  <div class="col-sm-8">
-    <h1>Nossa comunidade:</h1>
+  <div class="col-sm-4">
   </div>
   <%= form_tag(users_path, method: "get") do %>
       <div class="col-sm-3">
@@ -12,22 +11,29 @@
       </div>
   <% end %>
 </div>
-<ul class="indexlist">
-  <% n = 0 %>
-  <% @users.each do |user_index| %>
-      <% i = n%3 %>
-      <% @usercard = user_index; @avatar_size = 50 %>
-      <% if i==0 %>
-          <li>
-      <% end %>
-      <div class="col-sm-4" align="center">
-        <%= link_to(gravatar_for(@usercard, size: @avatar_size), @usercard) %><br>
-        <%= link_to @usercard.name, @usercard %>
-      </div>
-      <% if i==2 %>
-          </li>
-      <% end %>
-      <% n+=1 %>
-  <% end %>
-</ul>
-<div align="right"><%= will_paginate %></div>
+<div class="row">
+  <div align="center"><%= will_paginate %></div>
+</div>
+<div class="row">
+  <ul class="indexlist">
+    <% n = 0 %>
+    <% @users.each do |user_index| %>
+        <% i = n%3 %>
+        <% @usercard = user_index; @avatar_size = 50 %>
+        <% if i==0 %>
+            <li>
+        <% end %>
+        <div class="col-sm-4" align="center">
+          <%= link_to(gravatar_for(@usercard, size: @avatar_size), @usercard) %><br>
+          <%= link_to @usercard.name, @usercard %>
+        </div>
+        <% if i==2 %>
+            </li>
+        <% end %>
+        <% n+=1 %>
+    <% end %>
+  </ul>
+</div>
+<div class="row">
+  <div align="center"><%= will_paginate %></div>
+</div>
