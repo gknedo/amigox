@@ -20,9 +20,10 @@
       <% if i==0 %>
           <li>
       <% end %>
-
-      <%= render 'usercard' %>
-
+      <div class="col-sm-4" align="center">
+        <%= link_to(gravatar_for(@usercard, size: @avatar_size), @usercard) %><br>
+        <%= link_to @usercard.name, @usercard %>
+      </div>
       <% if i==2 %>
           </li>
       <% end %>

@@ -6,16 +6,16 @@
     Administradores:<br>
     <% @exchange.admins.each do |id| %>
         <% @user = User.find(id) %>
-        |<%= link_to(gravatar_for(@user, size: 25),@user) %>
+        <%= link_to(gravatar_for(@user, size: 25),@user) %>
     <% end %>
-    |<br>
+    <br>
   </div>
   <div class="col-sm-6">
     Participantes:<br>
     <% @exchange.participants.each do |id| %>
         <% @user = User.find(id) %>
-        |<%= link_to(gravatar_for(@user, size: 25),@user) %>
+        <%= link_to(gravatar_for(@user, size: 25),@user) %>
     <% end %>
-    |<br>
+    <br>
   </div>
 </div>

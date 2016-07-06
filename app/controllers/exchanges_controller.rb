@@ -7,7 +7,7 @@ class ExchangesController < ApplicationController
   end
 
   def create
-    @exchange = Exchange.new(user_params.merge(admins: [@current_user.id],participants:[@current_user.id]))
+    @exchange = Exchange.new(user_params.merge(admins: [@current_user.id], participants: [@current_user.id]))
     if @exchange.save
       flash[:info] = "Amigo secreto criado."
       redirect_to root_url
@@ -30,10 +30,34 @@ class ExchangesController < ApplicationController
     redirect_to exchanges_path
   end
 
-  def invitation
+  def invite_new
     @exchange = Exchange.find(params[:id])
-    unless @exchange.have_user_as?(current_user,'admins')
+    @user = User.find(params[:user])
+    confirm_invite
+  end
+
+  def invite_create
+    @exchange = Exchange.find(params[:id])
+    @user = User.find(params[:user])
+    confirm_invite
+    #TODO convidar ao inves de adicionar a lista de participantes
+    @exchange.participants.push(@user.id)
+    if @exchange.save
+      flash[:success] = @user.name + " convidado para o amigo secreto."
+      redirect_to @exchange
+    else
+      flash[:danger] = "Erro inesperado!"
+    end
+  end
+
+  private
+
+  def confirm_invite
+    if !@exchange.have_user_as?(@current_user, 'admins')
       flash[:danger] = "Você deve ser um administrador do amigo secreto para convidar outras pessoas!"
+      redirect_to exchanges_path
+    elsif @exchange.have_user_as?(@user, 'participants')
+      flash[:info] = @user.name + " já é um participante deste amigo secreto!"
       redirect_to exchanges_path
     end
   end
@@ -61,6 +85,6 @@ class ExchangesController < ApplicationController
   private
 
   def user_params
-    params.require(:exchange).permit(:title,:description)
+    params.require(:exchange).permit(:title, :description)
   end
 end

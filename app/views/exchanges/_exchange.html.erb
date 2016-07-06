@@ -2,7 +2,7 @@
   <%= link_to exchange.title, exchange %>
   <% exchange.participants.each do |id| %>
   <% @admin = User.find(id) %>
-      |<%= link_to(gravatar_for(@admin,size: 25) ,@admin) %>
+      <%= link_to(gravatar_for(@admin,size: 25) ,@admin) %>
   <% end %>
   <% if current_user.admin? %>
       <br><%= link_to "Cancelar", exchange, method: :delete,
