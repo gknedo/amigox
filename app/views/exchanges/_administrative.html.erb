@@ -10,12 +10,12 @@
           <div class="row">
             <% if @exchange.raffled? %>
                 <div class="col-sm-2">
-                  <%= link_to "Sortear", raffle_exchange_path, class: "btn btn-primary disabled" %>
+                  <%= link_to "Sortear", raffle_exchange_path, class: "btn btn-success disabled btn-block" %>
                 </div>
                 <p>Este amigo secreto já foi sorteado.</p>
             <% else %>
                 <div class="col-sm-2">
-                  <%= link_to "Sortear", raffle_exchange_path, class: "btn btn-primary", data: {confirm: "Deseja mesmo sortear esse amigo secreto?\nEsta ação não poderá ser desfeita!"} %>
+                  <%= link_to "Sortear", raffle_exchange_path, class: "btn btn-warning btn-block", data: {confirm: "Deseja mesmo sortear esse amigo secreto?\nEsta ação não poderá ser desfeita!"} %>
                 </div>
                 <p>Sorteia o amigo secreto, enviando para cada usuário uma mensagem.</p>
             <% end %>
@@ -23,17 +23,17 @@
           <div class="row">
             <% if !@exchange.raffled? %>
                 <div class="col-sm-2">
-                  <%= link_to "Revelar", raffle_exchange_path, class: "btn btn-primary disabled" %>
+                  <%= link_to "Revelar", raffle_exchange_path, class: "btn btn-danger disabled btn-block" %>
                 </div>
                 <p>Sorteie o amigo secreto antes de revelá-lo.</p>
             <% elsif @exchange.exposed? %>
                 <div class="col-sm-2">
-                  <%= link_to "Revelar", raffle_exchange_path, class: "btn btn-primary disabled" %>
+                  <%= link_to "Revelar", raffle_exchange_path, class: "btn btn-success disabled btn-block" %>
                 </div>
-                <p>Este amigo secreto já foi sorteado.</p>
+                <p>Este amigo secreto já foi revelado.</p>
             <% else %>
                 <div class="col-sm-2">
-                  <%= link_to "Revelar", reveal_exchange_path, class: "btn btn-primary", data: {confirm: "Deseja mesmo revelar este amigo secreto?\nEsta ação não poderá ser desfeita!"} %>
+                  <%= link_to "Revelar", reveal_exchange_path, class: "btn btn-warning btn-block", data: {confirm: "Deseja mesmo revelar este amigo secreto?\nEsta ação não poderá ser desfeita!"} %>
                 </div>
                 <p>Revela a identidade de todos os amigos para todos os participantes deste amigo secreto.</p>
             <% end %>
