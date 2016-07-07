@@ -1,0 +1,44 @@
+<% if @exchange.have_user_as?(@current_user, 'admins') %>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapseConfig">Configurações</a>
+        </h4>
+      </div>
+      <div id="collapseConfig" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="row">
+            <% if @exchange.raffled? %>
+                <div class="col-sm-2">
+                  <%= link_to "Sortear", raffle_exchange_path, class: "btn btn-primary disabled" %>
+                </div>
+                <p>Este amigo secreto já foi sorteado.</p>
+            <% else %>
+                <div class="col-sm-2">
+                  <%= link_to "Sortear", raffle_exchange_path, class: "btn btn-primary", data: {confirm: "Deseja mesmo sortear esse amigo secreto?\nEsta ação não poderá ser desfeita!"} %>
+                </div>
+                <p>Sorteia o amigo secreto, enviando para cada usuário uma mensagem.</p>
+            <% end %>
+          </div>
+          <div class="row">
+            <% if !@exchange.raffled? %>
+                <div class="col-sm-2">
+                  <%= link_to "Revelar", raffle_exchange_path, class: "btn btn-primary disabled" %>
+                </div>
+                <p>Sorteie o amigo secreto antes de revelá-lo.</p>
+            <% elsif @exchange.exposed? %>
+                <div class="col-sm-2">
+                  <%= link_to "Revelar", raffle_exchange_path, class: "btn btn-primary disabled" %>
+                </div>
+                <p>Este amigo secreto já foi sorteado.</p>
+            <% else %>
+                <div class="col-sm-2">
+                  <%= link_to "Revelar", reveal_exchange_path, class: "btn btn-primary", data: {confirm: "Deseja mesmo revelar este amigo secreto?\nEsta ação não poderá ser desfeita!"} %>
+                </div>
+                <p>Revela a identidade de todos os amigos para todos os participantes deste amigo secreto.</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

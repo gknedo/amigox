@@ -1,40 +1,33 @@
 <% provide(:title, @exchange.title) %>
-<div class="panel panel-primary">
-  <div class="panel-heading"><%= @exchange.title %></div>
-  <div class="panel-body">
-    <p><%= simple_format(@exchange.description).html_safe %></p>
-    <div class="row" align="center">
-      <div class="col-sm-6">
-        Administradores:<br>
-        <% @exchange.admins.each do |id| %>
-            <% @user = User.find(id) %>
-            <%= link_to(gravatar_for(@user, size: 25), @user) %>
-        <% end %>
+<div class="panel-group ">
+  <div class="panel panel-primary">
+    <div class="panel-heading"><h1><%= @exchange.title %></h1></div>
+    <div class="panel-body">
+      <div align="center">
+        <p><%= simple_format(@exchange.description).html_safe %></p>
       </div>
-      <div class="col-sm-6">
-        Participantes:<br>
-        <% @exchange.participants.each do |id| %>
-            <% @user = User.find(id) %>
-            <%= link_to(gravatar_for(@user, size: 25), @user) %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="row" align="center">
-      <div class="col-sm-6">
-        Convidados:<br>
-        <% @exchange.invites.each do |id| %>
-            <% @user = User.find(id) %>
-            <%= link_to(gravatar_for(@user, size: 25), @user) %>
-        <% end %>
-      </div>
-      <div class="col-sm-6">
-        Requisições de Participação:<br>
-        <% @exchange.requests.each do |id| %>
-            <% @user = User.find(id) %>
-            <%= link_to(gravatar_for(@user, size: 25), @user) %>
-        <% end %>
+      <div class="row" align="center">
+        <div class="col-sm-3">
+          <% @title = 'Administradores'; @table = @exchange.admins %>
+          <%= render 'user_list' %>
+        </div>
+        <div class="col-sm-3">
+          <% @title = 'Participantes'; @table = @exchange.participants %>
+          <%= render 'user_list' %>
+        </div>
+        <div class="col-sm-3">
+          <% @title = 'Convidados'; @table = @exchange.invites %>
+          <%= render 'user_list' %>
+        </div>
+        <div class="col-sm-3">
+          <% @title = 'Pedidos de Participação'; @table = @exchange.requests %>
+          <%= render 'user_list' %>
+        </div>
       </div>
     </div>
+    <%= render 'administrative' %>
+    <%= render 'raffle_user' %>
+    <%= render 'raffle_all' %>
   </div>
+
 </div>

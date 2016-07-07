@@ -35,9 +35,9 @@ User.create!(name: "Bruno Oliveira",
              activated: true,
              activated_at: Time.zone.now)
 
-99.times do |n|
+30.times do |n|
   name = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
+  email = "teste#{n+3}@teste.com"
   password = "password"
   User.create!(name: name,
                email: email,
@@ -51,21 +51,21 @@ Exchange.create(
     title: "Inauguração dos Amigos",
     description: "Descrição do primeiro amigo secreto",
     admins: [1],
-    participants: [1, 2]
-)
-
-Exchange.create(
-    title: "Segundo amigo",
-    description: "Descrição do segundo amigo secreto",
-    admins: [1],
-    participants: [1]
+    participants: [1, 2,3,4,5,6,7,8,9,10,11,12,13,14]
 )
 
 Exchange.create(
     title: "Amigo da Rayane",
-    description: "Descrição do amigo da rayane",
+    description: "Amigo da rayane",
     admins: [2],
     participants: [2]
+)
+
+Exchange.create(
+    title: "Segundo Amigo da Rayane",
+    description: "Descrição do amigo da rayane pronto para o sorteio",
+    admins: [1,2],
+    participants: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
 )
 
 Exchange.create(

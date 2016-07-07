@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  exchange: 
+  user: 
+  gift_to: 
+
+two:
+  exchange: 
+  user: 
+  gift_to: 

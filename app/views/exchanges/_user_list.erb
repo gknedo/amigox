@@ -1,0 +1,11 @@
+<% n = 0 %>
+<%= simple_format('</p><p>').html_safe + @title + ":" %>
+<% @table.each do |id| %>
+    <% if n%5==0 %>
+        <%= simple_format('</p><p>').html_safe %>
+    <% end %>
+    <% @user = User.find(id) %>
+    <%= link_to(gravatar_for(@user, size: 25), @user) %>
+    <% n+=1 %>
+<% end %>
+<%= simple_format('</p>').html_safe %>
