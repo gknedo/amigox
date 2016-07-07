@@ -1,0 +1,30 @@
+<% raffles = Raffle.from_exchange(@exchange, @current_user) %>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" href="#collapseUsers">Usuários no Amigo Secreto</a>
+    </h4>
+  </div>
+  <div id="collapseUsers" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="row" align="center">
+        <div class="col-sm-3">
+          <% @title = 'Administradores'; @table = @exchange.admins %>
+          <%= render 'user_list' %>
+        </div>
+        <div class="col-sm-3">
+          <% @title = 'Participantes'; @table = @exchange.participants %>
+          <%= render 'user_list' %>
+        </div>
+        <div class="col-sm-3">
+          <% @title = 'Convidados'; @table = @exchange.invites %>
+          <%= render 'user_list' %>
+        </div>
+        <div class="col-sm-3">
+          <% @title = 'Pedidos de Participação'; @table = @exchange.requests %>
+          <%= render 'user_list' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

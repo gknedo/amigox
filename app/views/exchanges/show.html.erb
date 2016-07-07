@@ -6,28 +6,10 @@
       <div align="center">
         <p><%= simple_format(@exchange.description).html_safe %></p>
       </div>
-      <div class="row" align="center">
-        <div class="col-sm-3">
-          <% @title = 'Administradores'; @table = @exchange.admins %>
-          <%= render 'user_list' %>
-        </div>
-        <div class="col-sm-3">
-          <% @title = 'Participantes'; @table = @exchange.participants %>
-          <%= render 'user_list' %>
-        </div>
-        <div class="col-sm-3">
-          <% @title = 'Convidados'; @table = @exchange.invites %>
-          <%= render 'user_list' %>
-        </div>
-        <div class="col-sm-3">
-          <% @title = 'Pedidos de Participação'; @table = @exchange.requests %>
-          <%= render 'user_list' %>
-        </div>
-      </div>
+      <%= render 'exchanges/panels/users' %>
+      <%= render 'exchanges/panels/administrative' %>
+      <%= render 'exchanges/panels/raffle_user' %>
+      <%= render 'exchanges/panels/raffle_all' %>
     </div>
-    <%= render 'administrative' %>
-    <%= render 'raffle_user' %>
-    <%= render 'raffle_all' %>
   </div>
-
 </div>
