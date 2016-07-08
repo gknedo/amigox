@@ -15,6 +15,11 @@ Rails.application.routes.draw do
       get :reveal, to: 'exchanges#reveal'
    end
   end
+  resources :groups do
+    member do
+      post :invite_all, to: 'groups#invite_all'
+    end
+end
   resources :users
   resources :account_activations, only: [:edit]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

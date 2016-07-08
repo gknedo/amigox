@@ -1,0 +1,13 @@
+<% provide(:title, @group.title) %>
+<div class="panel-group ">
+  <div class="panel panel-primary">
+    <div class="panel-heading" align="center">
+        <h1><%= @group.title %></h1>
+    </div>
+    <div class="panel-body">
+      <div align="center">
+        <p><%= simple_format(@group.description).html_safe %></p>
+      </div>
+    </div>
+  </div>
+</div>

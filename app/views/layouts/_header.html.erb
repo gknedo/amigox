@@ -3,10 +3,21 @@
     <%= link_to "amigo x", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Inicial", root_path %></li>
-        <li><%= link_to "Ajuda", help_path %></li>
+        <% unless logged_in? %>
+            <li><%= link_to "Inicial", root_path %></li>
+        <% end %>
         <% if logged_in? %>
-            <li><%= link_to "Comunidade", users_path %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Comunidade <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Usuários", users_path %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to "Grupos", groups_path %></li>
+                <li><%= link_to "Novo Grupo", new_group_path %></li>
+              </ul>
+            </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Amigos Secretos <b class="caret"></b>

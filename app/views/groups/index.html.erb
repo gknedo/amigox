@@ -1,0 +1,8 @@
+<% provide(:title, "Grupos") %>
+<h1>Índice dos Grupos</h1>
+
+<%= will_paginate %>
+<ul class="indexlist">
+  <%= render @groups %>
+</ul>
+<%= will_paginate %>

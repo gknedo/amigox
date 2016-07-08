@@ -9,8 +9,8 @@ class ExchangesController < ApplicationController
   def create
     @exchange = Exchange.new(user_params.merge(admins: [@current_user.id], participants: [@current_user.id]))
     if @exchange.save
-      flash[:info] = "Amigo secreto criado."
-      redirect_to root_url
+      flash[:success] = "Amigo secreto criado."
+      redirect_to @exchange
     else
       render 'new'
     end
@@ -142,15 +142,6 @@ class ExchangesController < ApplicationController
   end
 
   #Before filters
-
-  # Confirms a logged-in user.
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "Por favor, esteja logado para visualizar esse conteúdo"
-      redirect_to login_url
-    end
-  end
 
   # Confirms a owner.
   def logged_in_user

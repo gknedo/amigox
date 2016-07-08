@@ -1,0 +1,13 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" href="#collapseAddress">Endereço</a>
+    </h4>
+  </div>
+  <div id="collapseAddress" class="panel-collapse collapse">
+    <div class="panel-body" align="center">
+      <p><%= @user.address_street %><%= !@user.address_number.blank? ? ", #{@user.address_number}" : "" %><%= !@user.address_aditional.blank? ? ", #{@user.address_aditional}" : "" %></p>
+      <p><%= @user.address_city %><%= !@user.address_state.blank? ? ", #{@user.address_state}" : "" %><%= !@user.address_country.blank? ? ", #{@user.address_country}" : "" %></p>
+    </div>
+  </div>
+</div>

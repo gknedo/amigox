@@ -1,8 +1,8 @@
 <li>
   <div align="center">
-    <h5><%= link_to exchange.title, exchange %></h5>
+    <h5><%= link_to group.title, group %></h5>
     <p>
-      <% exchange.participants.each do |id| %>
+      <% group.participants.each do |id| %>
           <% participant = User.find(id) %>
           <%= link_to(gravatar_for(participant, size: 25), participant) %>
       <% end %>
