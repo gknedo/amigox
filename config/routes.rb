@@ -11,15 +11,12 @@ Rails.application.routes.draw do
     member do
       post :invite_send, to: 'exchanges#invite_send'
       post :invite_accept, to: 'exchanges#invite_accept'
+      get :invite_all, to: 'exchanges#invite_all'
       get :raffle, to: 'exchanges#raffle'
       get :reveal, to: 'exchanges#reveal'
    end
   end
-  resources :groups do
-    member do
-      post :invite_all, to: 'groups#invite_all'
-    end
-end
+  resources :groups
   resources :users
   resources :account_activations, only: [:edit]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

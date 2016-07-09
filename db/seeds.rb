@@ -82,3 +82,10 @@ Exchange.create(
     admins: [3],
     participants: [3]
 )
+
+Group.create(
+    title: "Grupo da Capela",
+    description: "Descrição do grupo da capela",
+    admins: [1],
+    participants: [1,2,3,4]
+)

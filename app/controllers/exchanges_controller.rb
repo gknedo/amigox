@@ -62,8 +62,10 @@ class ExchangesController < ApplicationController
   def raffle
     @exchange = Exchange.find(params[:id])
     unless !raffle_validate?
+      @exchange.invites = []
+      @exchange.requests = []
       raffles = @exchange.gen_raffle
-      @exchange.raffled = true;
+      @exchange.raffled = true
       raffles.each do |raf|
         raf.save
       end
@@ -81,6 +83,31 @@ class ExchangesController < ApplicationController
         flash[:success] = "Amigo secreto revelado com sucesso!"
       else
         flash[:danger] = "Erro inesperado!"
+      end
+    end
+    redirect_to @exchange
+  end
+
+  def invite_all
+    @invite_success = []
+    @invite_fail = []
+    flash[:danger] = ""
+    flash[:success] = ""
+    @exchange = Exchange.find(params[:id])
+    @group = Group.find(params[:group])
+    @group.participants.each do |user|
+      @user = User.find(user)
+      @current_user = current_user
+      if invite_send_validate?
+        @exchange.invites.push(@user.id)
+        if @exchange.save
+          @invite_success.push(@user)
+        else
+          flash[:danger] += "Erro inesperado!"
+          @invite_fail.push(@user)
+        end
+      else
+        @invite_fail.push(@user)
       end
     end
     redirect_to @exchange
@@ -107,7 +134,13 @@ class ExchangesController < ApplicationController
       flash[:danger] = "Você deve ser um administrador do amigo secreto para convidar outras pessoas!"
       return false
     elsif @exchange.have_user_as?(@user, 'participants')
-      flash[:danger] = @user.name + " já é um participante deste amigo secreto!"
+      flash[:danger] += @user.name + " já é um participante deste amigo secreto!"
+      return false
+    elsif @exchange.have_user_as?(@user, 'invites')
+      flash[:danger] += @user.name + " já é um participante deste amigo secreto!"
+      return false
+    elsif @exchange.raffled?
+      flash[:danger] = "Este amigo secreto já foi sorteado!"
       return false
     end
     return true
