@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get    '/login',  to: 'sessions#new'
   post   '/login',  to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  get '/mail/inbox', to: 'messages#inbox'
+  get '/mail/sent', to: 'messages#sent'
   resources :exchanges do
     member do
       post :invite_send, to: 'exchanges#invite_send'

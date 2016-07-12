@@ -1,0 +1,33 @@
+<% unless @user == current_user %>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapseSendMessage">Enviar Mensagem</a>
+        </h4>
+      </div>
+      <div id="collapseSendMessage" class="panel-collapse collapse">
+        <div class="panel-body" align="center">
+          <% @message = Message.new() %>
+          <%= form_for(@message) do |f| %>
+              <%= f.hidden_field :to, value: params[:id] %>
+
+              <div class="row" align="left">
+                <div class="col-sm-5">
+                  <%= f.label 'Assunto:' %>
+                  <%= f.text_field :subject, class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class="row" align="left">
+                <div class="col-sm-12">
+                  <%= f.label 'Conteúdo:' %>
+                  <%= f.text_area(:content, class: 'form-control', rows: 10) %>
+                </div>
+              </div>
+
+              <%= f.submit 'Enviar Mensagem', class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+<% end %>

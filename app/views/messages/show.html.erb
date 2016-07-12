@@ -1,0 +1,10 @@
+<% provide(:title, "Caixa de Entrada") %>
+<h1><%= @message.formatted_subject %></h1>
+<hr class="divider">
+<div class="row">
+  <div class="col-sm-4"><b>De:&nbsp;</b><%= @message.get_user('from').name %></div>
+  <div class="col-sm-4"><b>Para:&nbsp;</b><%= @message.get_user('to').name %></div>
+  <div class="col-sm-4"><b>Data:&nbsp;</b><%= @message.created_at.localtime.to_formatted_s(:long) %></div>
+</div>
+<hr class="divider">
+<%= simple_format(@message.content).html_safe %>

@@ -1,7 +1,0 @@
-<%= form_for(@message) do |f| %>
-
-    <%= f.label 'Conteúdo:' %>
-    <%= f.text_area :content, class: 'form-control' %>
-
-    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-<% end %>

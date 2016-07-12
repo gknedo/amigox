@@ -1,0 +1,18 @@
+<div class="row" align="center">
+  <div class="col-sm-3">
+    <% @title = 'Administradores'; @table = @group.admins %>
+    <%= render 'groups/panels/user_list' %>
+  </div>
+  <div class="col-sm-3">
+    <% @title = 'Participantes'; @table = @group.participants %>
+    <%= render 'groups/panels/user_list' %>
+  </div>
+  <div class="col-sm-3">
+    <% @title = 'Convidados'; @table = @group.invites %>
+    <%= render 'groups/panels/user_list' %>
+  </div>
+  <div class="col-sm-3">
+    <% @title = 'Pedidos de Participação'; @table = @group.requests %>
+    <%= render 'groups/panels/user_list' %>
+  </div>
+</div>

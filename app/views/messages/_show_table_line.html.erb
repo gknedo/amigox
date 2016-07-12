@@ -1,0 +1,17 @@
+<% user_from = @message.get_user('from') %>
+<% user_to = @message.get_user('to') %>
+<% if !@message.seen && current_user.id == @message.to %>
+    <tr>
+      <td><%= link_to text_with_black(@message.formatted_subject), @message %></td>
+      <td><%= link_to text_with_black(user_from.name), user_from %></td>
+      <td><%= link_to text_with_black(user_to.name), user_to %></td>
+      <td><%= text_with_black(@message.created_at.localtime.to_formatted_s(:long)) %></td>
+    </tr>
+<% else %>
+    <tr>
+      <td><%= link_to @message.formatted_subject, @message %></td>
+      <td><%= link_to user_from.name, user_from %></td>
+      <td><%= link_to user_to.name, user_to %></td>
+      <td><%= @message.created_at.localtime.to_formatted_s(:long) %></td>
+    </tr>
+<% end %>

@@ -1,0 +1,28 @@
+<% provide(:title, 'Saída') %>
+<div class="panel-group ">
+  <div class="panel panel-primary">
+    <div class="panel-heading" align="center">
+      <h1><%= 'Caixa de Saída' %></h1>
+    </div>
+    <div class="panel-body">
+      <div align="center">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Assunto:</th>
+            <th>De:</th>
+            <th>Para:</th>
+            <th>Data:</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @messages.each do |m| %>
+              <% @message = m %>
+              <%= render 'show_table_line' %>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

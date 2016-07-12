@@ -1,18 +1,18 @@
 <div class="row" align="center">
   <div class="col-sm-3">
     <% @title = 'Administradores'; @table = @exchange.admins %>
-    <%= render 'user_list' %>
+    <%= render 'exchanges/panels/user_list' %>
   </div>
   <div class="col-sm-3">
     <% @title = 'Participantes'; @table = @exchange.participants %>
-    <%= render 'user_list' %>
+    <%= render 'exchanges/panels/user_list' %>
   </div>
   <div class="col-sm-3">
     <% @title = 'Convidados'; @table = @exchange.invites %>
-    <%= render 'user_list' %>
+    <%= render 'exchanges/panels/user_list' %>
   </div>
   <div class="col-sm-3">
     <% @title = 'Pedidos de Participação'; @table = @exchange.requests %>
-    <%= render 'user_list' %>
+    <%= render 'exchanges/panels/user_list' %>
   </div>
 </div>
