@@ -59,7 +59,7 @@ Exchange.create(
     title: "Inauguração dos Amigos",
     description: "Descrição do primeiro amigo secreto",
     admins: [1],
-    participants: [1, 2,3,4,5,6,7,8,9,10,11,12,13,14]
+    participants: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 )
 
 Exchange.create(
@@ -72,8 +72,8 @@ Exchange.create(
 Exchange.create(
     title: "Segundo Amigo da Rayane",
     description: "Descrição do amigo da rayane pronto para o sorteio",
-    admins: [1,2],
-    participants: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+    admins: [1, 2],
+    participants: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
 )
 
 Exchange.create(
@@ -87,5 +87,12 @@ Group.create(
     title: "Grupo da Capela",
     description: "Descrição do grupo da capela",
     admins: [1],
-    participants: [1,2,3,4]
+    participants: [1, 2, 3, 4]
+)
+
+Message.create(
+    from: 1,
+    to: 2,
+    subject: 'Mensagem para Rayane',
+    content: 'Conteúdo da mensagem'
 )
