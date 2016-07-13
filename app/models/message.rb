@@ -50,9 +50,18 @@ class Message < ApplicationRecord
     message.save
   end
 
+  def self.send_group_invite(user_from,user_to,group)
+    message = Message.new
+    message.subject = 'Venha participar do meu grupo!'
+    message.content = "#{user_from.name} te convidou para participar de seu amigo secreto \"#{group.title}\"<br>#{href_group(group,"Clique Aqui")} para visualizar o convite"
+    message.from = user_from.id
+    message.to = user_to.id
+    message.save
+  end
+
   private
-  def self.href_exchange(exchange,str)
-    return "<a href=\"/exchanges/#{exchange.id}\">#{str}</a>"
+  def self.href_group(group,str)
+    return "<a href=\"/groups/#{group.id}\">#{str}</a>"
   end
 
 end

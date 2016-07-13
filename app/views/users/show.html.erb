@@ -10,9 +10,12 @@
         <p><%= simple_format(@user.about).html_safe %></p>
       </div>
       <%= render 'users/panels/address' %>
-      <%= render 'users/panels/panel_invite_received' %>
-      <%= render 'users/panels/panel_invite_sends' %>
       <%= render 'users/panels/send_message' %>
+      <%= render 'users/panels/invite_sends' %>
+      <%= render 'users/panels/invite_received' %>
+      <%= render 'users/panels/group_invite_sends' %>
+
+
     </div>
   </div>
 </div>
