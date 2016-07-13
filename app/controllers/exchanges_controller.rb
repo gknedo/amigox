@@ -13,10 +13,12 @@ class ExchangesController < ApplicationController
     @exchange.title = user_params[:title]
     @exchange.description = user_params[:description]
     @exchange.invites = []
-    params[:exchange][:invites].each do |invite|
-      invite_i = invite.to_i
-      unless invite_i == current_user.id
-        @exchange.invites.push(invite_i)
+    unless params[:exchange][:invites].nil?
+      params[:exchange][:invites].each do |invite|
+        invite_i = invite.to_i
+        unless invite_i == current_user.id
+          @exchange.invites.push(invite_i)
+        end
       end
     end
     if @exchange.save
@@ -213,6 +215,6 @@ class ExchangesController < ApplicationController
   private
 
   def user_params
-    params.require(:exchange).permit(:title, :description,:invites)
+    params.require(:exchange).permit(:title, :description, :invites)
   end
 end
