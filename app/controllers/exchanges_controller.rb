@@ -36,6 +36,7 @@ class ExchangesController < ApplicationController
     unless !invite_send_validate?
       @exchange.invites.push(@user.id)
       if @exchange.save
+        Message.send_exchange_invite(current_user,@user,@exchange)
         flash[:success] = @user.name + " convidado para o amigo secreto."
       else
         flash[:danger] = "Erro inesperado!"
