@@ -19,4 +19,13 @@ quantidade e com maior visibilidade.</p>
 sistema de painéis terá que ser revisto.</p>
 <p>Mais opções administrativas para os usuários, entre elas, a possibilidade de se adicionar novos administradores,
 excluir usuários, excluir grupos e amigos secretos.</p>
-<p>Melhorias na interface do correio interno, </p>
+<p>Melhorias na interface do correio interno, com melhor navegação entre as áreas e maior facilidade para responder mensagens</p>
+<p>Várias verificações de segurança para evitar acesso indevido por meio de SQL Injections ou Forms Injections são feitas,
+  mas sempre há espaço para melhorias.</p>
+<p>A interface para permitir requisições para entrada em grupos e amigos secretos foi implementada, mas seus painéis
+não foram implementados, como esta função não estava nos requisitos, fica como sugestão de melhoria futura</p>
+<h2>Problemas Encontrados:</h2>
+<p>Devida a uma limitação do framework de notificações flash padrão do Rails, ao ser necessário exibir mais de uma notificação
+por página (como ao convidar todos os usuários de um grupo para um amigo secreto) algumas notificações podem se perder.
+Para se poder exibir mais de uma notificação por vez todo o sistema de notificações teria que ser refeito, já que esta
+função não é suportada pelo framework padrão do Rails.</p>

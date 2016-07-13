@@ -1,2 +1,2 @@
-module AccountActivationsHelperAccount activation
+module AccountActivationsHelper
 end
