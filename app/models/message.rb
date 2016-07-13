@@ -26,10 +26,33 @@ class Message < ApplicationRecord
   def self.send_exchange_invite(user_from,user_to,exchange)
     message = Message.new
     message.subject = 'Venha participar do meu amigo secreto!'
-    message.content = "#{user_from.name} te convidou para participar de seu amigo secreto \"#{exchange.title}\"<br><a href=\"/exchanges/#{exchange.id}\">Clique Aqui</a> para visualizar o convite"
+    message.content = "#{user_from.name} te convidou para participar de seu amigo secreto \"#{exchange.title}\"<br>#{href_exchange(exchange,"Clique Aqui")} para visualizar o convite"
     message.from = user_from.id
     message.to = user_to.id
     message.save
+  end
+
+  def self.send_exchange_raffle(user_from,user_to,exchange)
+    message = Message.new
+    message.subject = exchange.title + " foi sorteado!"
+    message.content = "O amigo secreto \"#{exchange.title}\" foi sorteado<br>#{href_exchange(exchange,"Clique Aqui")} para conferir com quem você saiu!"
+    message.from = user_from.id
+    message.to = user_to.id
+    message.save
+  end
+
+  def self.send_exchange_raffle(user_from,user_to,exchange)
+    message = Message.new
+    message.subject = exchange.title + " foi revelado!"
+    message.content = "O amigo secreto \"#{exchange.title}\" foi revelado<br>#{href_exchange(exchange,"Clique Aqui")} para você poder conferir com quem todos saíram!"
+    message.from = user_from.id
+    message.to = user_to.id
+    message.save
+  end
+
+  private
+  def self.href_exchange(exchange,str)
+    return "<a href=\"/exchanges/#{exchange.id}\">#{str}</a>"
   end
 
 end

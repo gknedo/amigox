@@ -10,6 +10,10 @@ class ExchangesController < ApplicationController
     @exchange = Exchange.new(user_params.merge(admins: [@current_user.id], participants: [@current_user.id]))
     if @exchange.save
       flash[:success] = "Amigo secreto criado."
+      group_id = params[:group_id]
+      unless (group_id.blank?)
+        group = Group.find(group_id)
+      end
       redirect_to @exchange
     else
       render 'new'
@@ -36,7 +40,7 @@ class ExchangesController < ApplicationController
     unless !invite_send_validate?
       @exchange.invites.push(@user.id)
       if @exchange.save
-        Message.send_exchange_invite(current_user,@user,@exchange)
+        Message.send_exchange_invite(current_user, @user, @exchange)
         flash[:success] = @user.name + " convidado para o amigo secreto."
       else
         flash[:danger] = "Erro inesperado!"
@@ -71,6 +75,7 @@ class ExchangesController < ApplicationController
         raf.save
       end
       @exchange.save
+      Message.send_exchange_raffle(current_user, @user, @exchange)
       flash[:success] = "Amigo secreto sorteado!"
     end
     redirect_to @exchange
@@ -82,6 +87,7 @@ class ExchangesController < ApplicationController
       @exchange.exposed = true;
       if @exchange.save
         flash[:success] = "Amigo secreto revelado com sucesso!"
+        Message.send_exchange_reveal(current_user, @user, @exchange)
       else
         flash[:danger] = "Erro inesperado!"
       end
@@ -102,9 +108,11 @@ class ExchangesController < ApplicationController
       if invite_send_validate?
         @exchange.invites.push(@user.id)
         if @exchange.save
+          Message.send_exchange_invite(current_user, @user, @exchange)
+          flash[:success] += @user.name + " convidado com sucesso! "
           @invite_success.push(@user)
         else
-          flash[:danger] += "Erro inesperado!"
+          flash[:danger] += "Erro inesperado! "
           @invite_fail.push(@user)
         end
       else
@@ -118,13 +126,13 @@ class ExchangesController < ApplicationController
 
   def reveal_validate?
     if !@exchange.have_user_as?(@current_user, 'admins')
-      flash[:danger] = "Somente administradores do amigo secreto podem revelar o sorteio!"
+      flash[:danger] = "Somente administradores do amigo secreto podem revelar o sorteio! "
       return false
     elsif @exchange.exposed?
-      flash[:danger] = "Este amigo secreto já foi revelado!"
+      flash[:danger] = "Este amigo secreto já foi revelado! "
       return false
     elsif !@exchange.raffled?
-      flash[:danger] = "Este amigo secreto ainda não foi sorteado!"
+      flash[:danger] = "Este amigo secreto ainda não foi sorteado! "
       return false
     end
     return true
@@ -132,13 +140,13 @@ class ExchangesController < ApplicationController
 
   def invite_send_validate?
     if !@exchange.have_user_as?(@current_user, 'admins')
-      flash[:danger] = "Você deve ser um administrador do amigo secreto para convidar outras pessoas!"
+      flash[:danger] = "Você deve ser um administrador do amigo secreto para convidar outras pessoas! "
       return false
     elsif @exchange.have_user_as?(@user, 'participants')
-      flash[:danger] += @user.name + " já é um participante deste amigo secreto!"
+      flash[:danger] += @user.name + " já é um participante deste amigo secreto! "
       return false
     elsif @exchange.have_user_as?(@user, 'invites')
-      flash[:danger] += @user.name + " já é um participante deste amigo secreto!"
+      flash[:danger] += @user.name + " já é um participante deste amigo secreto! "
       return false
     elsif @exchange.raffled?
       flash[:danger] = "Este amigo secreto já foi sorteado!"
@@ -149,13 +157,13 @@ class ExchangesController < ApplicationController
 
   def invite_accept_validate?
     if !@exchange.have_user_as?(@current_user, 'invites')
-      flash[:danger] = "Você tentou entrar em um amigo secreto que não foi convidado!"
+      flash[:danger] = "Você tentou entrar em um amigo secreto que não foi convidado! "
       return false
     elsif @exchange.have_user_as?(@current_user, 'participants')
-      flash[:danger] = "Você tentou entrar em um amigo secreto que ja faz parte!"
+      flash[:danger] = "Você tentou entrar em um amigo secreto que ja faz parte! "
       return false
     elsif !current_user?(@user)
-      flash[:danger] = "Você não pode aceitar convites para outras pessoas!"
+      flash[:danger] = "Você não pode aceitar convites para outras pessoas! "
       return false
     end
     return true
@@ -163,13 +171,13 @@ class ExchangesController < ApplicationController
 
   def raffle_validate?
     if !@exchange.have_user_as?(@current_user, 'admins')
-      flash[:danger] = "Somente administradores do amigo secreto podem fazer o sorteio!"
+      flash[:danger] = "Somente administradores do amigo secreto podem fazer o sorteio! "
       return false
     elsif @exchange.participants.count < 4
-      flash[:danger] = "O amigo secreto precisa ter pelo menos 4 pessoas!"
+      flash[:danger] = "O amigo secreto precisa ter pelo menos 4 participantes! "
       return false
     elsif @exchange.raffled?
-      flash[:danger] = "Este amigo secreto já foi sorteado!"
+      flash[:danger] = "Este amigo secreto já foi sorteado! "
       return false
     end
     return true
