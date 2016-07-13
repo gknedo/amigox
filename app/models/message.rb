@@ -60,6 +60,9 @@ class Message < ApplicationRecord
   end
 
   private
+  def self.href_exchange(exchange,str)
+    return "<a href=\"/groups/#{exchange.id}\">#{str}</a>"
+  end
   def self.href_group(group,str)
     return "<a href=\"/groups/#{group.id}\">#{str}</a>"
   end

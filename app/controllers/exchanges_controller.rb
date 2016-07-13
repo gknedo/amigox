@@ -127,10 +127,10 @@ class ExchangesController < ApplicationController
         @exchange.invites.push(@user.id)
         if @exchange.save
           Message.send_exchange_invite(current_user, @user, @exchange)
-          flash[:success] += @user.name + " convidado com sucesso! "
+          flash[:success] = @user.name + " convidado com sucesso! "
           @invite_success.push(@user)
         else
-          flash[:danger] += "Erro inesperado! "
+          flash[:danger] = "Erro inesperado! "
           @invite_fail.push(@user)
         end
       else
@@ -161,10 +161,10 @@ class ExchangesController < ApplicationController
       flash[:danger] = "Você deve ser um administrador do amigo secreto para convidar outras pessoas! "
       return false
     elsif @exchange.have_user_as?(@user, 'participants')
-      flash[:danger] += @user.name + " já é um participante deste amigo secreto! "
+      flash[:danger] = @user.name + " já é um participante deste amigo secreto! "
       return false
     elsif @exchange.have_user_as?(@user, 'invites')
-      flash[:danger] += @user.name + " já é um participante deste amigo secreto! "
+      flash[:danger] = @user.name + " já é um participante deste amigo secreto! "
       return false
     elsif @exchange.raffled?
       flash[:danger] = "Este amigo secreto já foi sorteado!"
