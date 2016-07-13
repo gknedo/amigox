@@ -7,12 +7,22 @@ class ExchangesController < ApplicationController
   end
 
   def create
-    @exchange = Exchange.new(user_params.merge(admins: [@current_user.id], participants: [@current_user.id]))
+    @exchange = Exchange.new
+    @exchange.admins = [@current_user.id]
+    @exchange.participants = [@current_user.id]
+    @exchange.title = user_params[:title]
+    @exchange.description = user_params[:description]
+    @exchange.invites = []
+    params[:exchange][:invites].each do |invite|
+      invite_i = invite.to_i
+      unless invite_i == current_user.id
+        @exchange.invites.push(invite_i)
+      end
+    end
     if @exchange.save
       flash[:success] = "Amigo secreto criado."
-      group_id = params[:group_id]
-      unless (group_id.blank?)
-        group = Group.find(group_id)
+      @exchange.invites.each do |invite|
+        Message.send_exchange_invite(current_user, User.find(invite), @exchange)
       end
       redirect_to @exchange
     else
@@ -74,8 +84,12 @@ class ExchangesController < ApplicationController
       raffles.each do |raf|
         raf.save
       end
+      @exchange.invites = []
+      @exchange.requests = []
       @exchange.save
-      Message.send_exchange_raffle(current_user, @user, @exchange)
+      @exchange.participants.each do |participant|
+        Message.send_exchange_raffle(current_user, User.find(participant), @exchange)
+      end
       flash[:success] = "Amigo secreto sorteado!"
     end
     redirect_to @exchange
@@ -87,7 +101,9 @@ class ExchangesController < ApplicationController
       @exchange.exposed = true;
       if @exchange.save
         flash[:success] = "Amigo secreto revelado com sucesso!"
-        Message.send_exchange_reveal(current_user, @user, @exchange)
+        @exchange.participants.each do |participant|
+          Message.send_exchange_reveal(current_user, User.find(participant), @exchange)
+        end
       else
         flash[:danger] = "Erro inesperado!"
       end
@@ -197,6 +213,6 @@ class ExchangesController < ApplicationController
   private
 
   def user_params
-    params.require(:exchange).permit(:title, :description)
+    params.require(:exchange).permit(:title, :description,:invites)
   end
 end

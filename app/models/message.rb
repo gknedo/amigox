@@ -41,7 +41,7 @@ class Message < ApplicationRecord
     message.save
   end
 
-  def self.send_exchange_raffle(user_from,user_to,exchange)
+  def self.send_exchange_reveal(user_from,user_to,exchange)
     message = Message.new
     message.subject = exchange.title + " foi revelado!"
     message.content = "O amigo secreto \"#{exchange.title}\" foi revelado<br>#{href_exchange(exchange,"Clique Aqui")} para você poder conferir com quem todos saíram!"
